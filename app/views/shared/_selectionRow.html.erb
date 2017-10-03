@@ -4,11 +4,20 @@
 		winnercount = 0
 	%>
   	<% gr.each do |pick| %>
-  			<% 	t = teams[pick.team_id] %>
-          <td class="logo-small logo-nfl-small nfl-small-<%= t.large_img %> game-tooltip <% if winners.key? winnercount += 1 %>rightpick<%else wrong=1 %>wrongpick<%end%>" title="<%=t.name%>"><span><%=t.id%></span></td>
+  			<% 	t = teams[pick.team_id] 
+  				if winners.has_key?(t.id)
+  					winner = 1
+  				elsif winners.has_value?(t.id)
+  					winner = 0
+  				else
+  					winner = -1
+  				end
+  			%>
+          <td class="logo-small logo-nfl-small nfl-small-<%= t.large_img %> game-tooltip 
+          <% if winner == 1%>rightpick<%elsif winner == 0 %>wrongpick<%end%>" title="<%=t.name%>"><span><%=t.id%></span></td>
 	<% end %>
           <td class="logo-small" align="center">
-            <img src="/assets/<%if wrong == 1%>red-x.png"<% elsif wrong == 0 %>questionmark.gif" height="23px"<% elsif winnercount == 5 %>checkmark.png"<%end%> >
+            <img src="/assets/<%if wrong == 1%>red-x.png"<% elsif winnercount == 5 %>checkmark.png"<% else %>questionmark.gif" height="23px"<%end%> >
           </td>
           <td class="numbercenter"><%= gr[0].wins.to_s %></td>
 </tr>

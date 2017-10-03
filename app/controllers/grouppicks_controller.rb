@@ -15,10 +15,21 @@ class GrouppicksController < ApplicationController
   def getGameWinners
       games = Game.where(week_id: session[:currentWeek])
       winners = Hash.new
+      pushcount = 50
       games.each do |g|
-        # only put winners in the has
+        # put winners i key and loser in value
           if g.winning_team_id > 0
-              winners[g.winning_team_id] = 1
+              if g.winning_team_id == g.home_team_id
+                loser = g.vis_team_id
+              else
+                loser = g.home_team_id
+              end
+              if g.winning_team_id == 100
+                winners[pushcount] = g.home_team_id
+                winners[pushcount+1] = g.vis_team_id
+                pushcount += 1
+              end
+              winners[g.winning_team_id] = loser
           end
       end
       return winners
