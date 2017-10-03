@@ -1,0 +1,15 @@
+<div id="" class="teamDisplay <%if type == "home"%>hometeam<%end%><%if bSelected == true%> sel_highlighted<%end%>">
+	<%if bFavorite == true %>
+		<%if bHideCheckbox == false%>
+			<%= check_box_tag 'teams[]', t.id, bSelected%>
+		<%end%>
+	    <label><%=t.name%></label>
+	    <%= image_tag("nfl/" + t.large_img + ".gif") %>
+	 <%else%>
+	 	<%= image_tag("nfl/" + t.large_img + ".gif") %>
+	 	<label><%=t.name%></label>
+	 	<%if bHideCheckbox == false%>
+			<%= check_box_tag 'teams[]', t.id, bSelected%>
+		<%end%>
+	 <%end%>
+</div>

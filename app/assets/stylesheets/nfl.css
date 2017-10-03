@@ -1,0 +1,108 @@
+.logo-nfl-small {
+background-image:url(/assets/nfl/logo-nfl-teams-small-vert.png);
+background-repeat:no-repeat;
+}
+.nfl-small-ari_logo {
+background-position:15px 0px;
+}
+.nfl-small-atl_logo {
+background-position:15px -50px;
+}
+.nfl-small-bal_logo {
+background-position:15px -100px;
+}
+.nfl-small-buf_logo {
+background-position:15px -150px;
+}
+.nfl-small-car_logo {
+background-position:15px -200px;
+}
+.nfl-small-chi_logo {
+background-position:15px -250px;
+}
+.nfl-small-cin_logo {
+background-position:15px -300px;
+}
+.nfl-small-cle_logo {
+background-position:15px -350px;
+}
+.nfl-small-dal_logo {
+background-position:15px -400px;
+}
+.nfl-small-den_logo {
+background-position:15px -450px;
+}
+.nfl-small-det_logo {
+background-position:15px -500px;
+}
+.nfl-small-gb_logo {
+background-position:15px -550px;
+}
+.nfl-small-hou_logo {
+background-position:15px -600px;
+}
+.nfl-small-ind_logo {
+background-position:15px -650px;
+}
+.nfl-small-jac_logo {
+background-position:15px -700px;
+}
+.nfl-small-kc_logo {
+background-position:15px -750px;
+}
+.nfl-small-mia_logo {
+background-position:15px -800px;
+}
+.nfl-small-min_logo {
+background-position:15px -850px;
+}
+.nfl-small-ne_logo {
+background-position:15px -900px;
+}
+.nfl-small-no_logo {
+background-position:15px -950px;
+}
+.nfl-small-nyg_logo {
+background-position:15px -1000px;
+}
+.nfl-small-nyj_logo {
+background-position:15px -1050px;
+}
+.nfl-small-oak_logo {
+background-position:15px -1100px;
+}
+.nfl-small-phi_logo {
+background-position:15px -1150px;
+}
+.nfl-small-pit_logo {
+background-position:15px -1200px;
+}
+.nfl-small-sd_logo {
+background-position:15px -1250px;
+}
+.nfl-small-sf_logo {
+background-position:15px -1300px;
+}
+.nfl-small-sea_logo {
+background-position:15px -1350px;
+}
+.nfl-small-stl_logo {
+background-position:15px -1400px;
+}
+.nfl-small-tb_logo {
+background-position:15px -1450px;
+}
+.nfl-small-ten_logo {
+background-position:15px -1500px;
+}
+.nfl-small-was_logo {
+background-position:15px -1550px;
+}
+.logo-small {
+    height:25px;
+    width:58px;
+    margin: 0px 2px 0px 0px;
+    border:1px solid #A5A5A5;
+}
+
+

@@ -1,0 +1,35 @@
+
+<% if flash[:color]== "invalid"%>
+	<div id="flash-err-wrapper" class="flash">
+		<div id="flash-err"><%=flash[:notice]%></div>
+	</div>
+<%end%>
+<div id="content" class="settings_medium login">
+<%= form_tag(:action => 'login_attempt', :controller => 'sessions', :id => 'loginForm', :name => 'loginForm') do %>
+  <table border="0" cellpadding="0" cellspacing="0" class="property_value" summary="login form">
+     <tr>
+        <th><label>User ID</label></th>
+        <td>
+        	<%= text_field_tag :username, "", class: "big_form", maxlength: "40" %>
+        </td>
+     </tr>
+     <tr>
+        <th class="top" align="right"><label  for='password'>Password</label></th>
+        <td>
+        	<%= password_field_tag :password, "", class: "big_form", maxlength: "40" %> 
+        </td>
+     </tr>
+     <tr>
+        <th class="top" align="right">&nbsp;</th>
+        <td>
+        	<%= check_box_tag :remember_me, class: "chk" %>
+            <label class="smaller" for='remember_me'>Remember me</label>
+        </td>
+     </tr>
+ 				
+  </table>
+   </div>
+    <div class="buttons formButton logincontainer">
+        <input type="submit" value="Login"></input>
+    </div>
+<% end %>

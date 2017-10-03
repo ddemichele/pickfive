@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>The Pick 5</title>
+        <%= stylesheet_link_tag    "master" %>
+        <%= stylesheet_link_tag    "nfl" %>
+  		<%= javascript_include_tag "application" %>
+  		<%= javascript_include_tag "jquery-1.4.2.min" %>
+  		<%= javascript_include_tag "jquery.tools.min" %>
+  		<%= javascript_include_tag "hoverIntent" %>
+  		<%= javascript_include_tag "jquery.dropdown" %>
+  		<%= javascript_include_tag "helper" %>    
+    </head>
+    <body>
+    	<div id="pickContainer" class="wrapper">
+                  <div id="topheader">
+                    <ul class="float-right">
+                     <%if session[:user_id]%>
+					    <li>Welcome <%= @current_user.firstname + " " + @current_user.lastname %>!&nbsp;|&nbsp;</li>
+					    <li><%= link_to "Edit Settings", controller: "editSettings", action:"index" %>&nbsp;|&nbsp;</li>	
+					    <li><%= link_to "Logout", controller: "logout", action:"index" %>&nbsp;</li>&nbsp;					    
+					<%else%>
+						<li><%= link_to "Login", controller: "login", action:"index" %></li>					    
+					<%end%>
+                    </ul>
+		  		 </div>
+		  <div id="header">
+		    <div id="logo">
+		    	<%= link_to image_tag("logo_header.gif", alt: "Pick5"), :action => 'index', controller => 'groupPicks' %>
+		  	</div>
+		  </div>
+		  <div id="container">
+			 <%= yield %>	
+		  </div>
+		  <div id="footer">
+		  </div>
+		</div>      
+    </body>	
+</html>

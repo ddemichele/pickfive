@@ -1,0 +1,14 @@
+<tr class="listBgSel">
+  	<td class="listuser"><%=gr[0].firstname%> <%=gr[0].lastname%> #<%=gr[0].slipnum%></td>
+  	<% 	wrong = 0 
+		winnercount = 0
+	%>
+  	<% gr.each do |pick| %>
+  			<% 	t = teams[pick.team_id] %>
+          <td class="logo-small logo-nfl-small nfl-small-<%= t.large_img %> game-tooltip <% if winners.key? winnercount += 1 %>rightpick<%else wrong=1 %>wrongpick<%end%>" title="<%=t.name%>"><span><%=t.id%></span></td>
+	<% end %>
+          <td class="logo-small" align="center">
+            <img src="/assets/<%if wrong == 1%>red-x.png"<% elsif wrong == 0 %>questionmark.gif" height="23px"<% elsif winnercount == 5 %>checkmark.png"<%end%> >
+          </td>
+          <td class="numbercenter"><%= gr[0].wins.to_s %></td>
+</tr>

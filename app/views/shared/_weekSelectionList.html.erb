@@ -1,0 +1,8 @@
+<div class="week">
+  <div class="weekcaption">Week: </div>
+    <% i = 1
+    while i <= 17 %>
+        <a class="<% if current_week.to_i == i %>selected<%end%><%if i == 17 %>last<%end%>" href="?weekNumber=<%=i%>"><%=i%></a>
+    <% i += 1
+    end %>
+</div>

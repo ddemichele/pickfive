@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>The picks for Slip <%=@slipnum%> and week <%= @week %> for <%= @user.username %>:</p>
+    <p>
+        <% 
+        i = 1
+        @teams.each do |team| %>
+          <%= team %><% if i < 5 %>, <%end%>
+          <% i = i + 1 %>
+        <% end %>
+    </p>
+    <p>Good luck!</p>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+
+  
+        <div class="body">
+        	<%= render partial: "shared/navBar", locals: {type: "group"}  %>
+            <%= render partial: "shared/weekSelectionList", locals: {current_week: session[:currentWeek]} %><br>
+            
+            <div class="listHeader">Week <%= session[:currentWeek] %> Picks <span class="textRight">Total Picks: <%=@picks.size.to_s%></span></div>
+            <div class="list listcontent2">
+              <table>
+                <tr id="pickHeader">
+                    <td id="userheader" class="colheader">User</td>
+                    <td id="pickcol" class="colheader">1</td>
+                    <td id="pickcol" class="colheader">2</td>
+                    <td id="pickcol" class="colheader">3</td>
+                    <td id="pickcol" class="colheader">4</td>
+                    <td id="pickcol" class="colheader">5</td>
+                    <td id="pickcol" class="colheader">In?</td>
+                    <td id="pickcol" class="colheader">Wins</td>
+                </tr>
+                <% @picks.each do |pick| %>
+                <%= render partial: "shared/selectionRow", locals: {teams: @teams, winners: @winners, gr: pick}%>
+                <% end %>
+              </table>
+            </div>
+        </div>
+ 

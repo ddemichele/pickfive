@@ -1,0 +1,53 @@
+
+  
+        <div class="body">
+        	<%= render partial: "shared/navBar", locals: {type: "game"}  %>
+            <% if flash[:color]== "invalid"%>
+                <div id="flash-err-wrapper" class="flash">
+                    <div id="flash-err"><%=flash[:notice]%></div>
+                </div>
+            <% elsif flash[:color] == "valid" %>
+                <div id="flash-message-wrapper" class="flash">
+                    <div id="flash-message"><%=flash[:notice]%></div>
+                </div>
+            <%end%>
+            <%= render partial: "shared/weekSelectionList", locals: {current_week: session[:currentWeek]} %><br>
+            <%= form_tag(:action => 'save', :id => 'gameSubmit', :name => 'gameSubmit') do %>
+            <div class="listHeader">
+                Week <%=session[:currentWeek]%> Picks
+                <% if @user_slips > 0 %>
+                - Slip <%=session[:slipnum]%>
+                <% end %>
+            </div>
+            <div class="list listcontent">
+                <table>
+                        <tr id="pickHeader">
+                            <td class="colheader" width="42%">Favorite</td>
+                            <td class="colheader" width="10%">Spread</td>
+                            <td class="colheader" width="35%">Underdog</td>
+                            <td class="colheader" width="8%">Time</td>
+                        </tr>
+                        <% @games.each do |game| %>
+                        <% favorites = getFavorite(game) %>
+                        <tr class="listBgTR">
+                            <td class="favorite" valign="center">
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: @picks.include?(favorites[0]), bHideCheckbox: false, bFavorite: true, type: favorites[1], t: @teams[favorites[0]]}%>
+                            </td>
+                            <td align="center" class="spread"><%=getSpread(game.spread)%></td>
+                            <td>
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: @picks.include?(favorites[2]), bHideCheckbox: false, bFavorite: false, type: favorites[3], t: @teams[favorites[2]]}%>
+                            </td>
+                            <td align="center" class="spread"><%=game.gametime%>:00</td>
+                        </tr>
+                        <% end %>
+                </table>
+            </div>
+            <div class="list_subtext">
+              * Home teams are in CAPS
+            </div>
+            <div class="buttons formButton">
+              <input type="submit" value="Save"></input>
+            </div>
+            <% end %>
+        </div>
+ 
