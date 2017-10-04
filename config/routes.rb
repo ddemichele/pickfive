@@ -10,6 +10,7 @@ Pickfive::Application.routes.draw do
   match "setting" => "sessions#setting", via: [:get, :post]
   match "gamepicks" => "gamepicks#index", via: [:get, :post]
   match "grouppicks" => "grouppicks#index", via: [:get, :post]
+  match "enterspreads" => "enterspreads#index", via: [:get, :post]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

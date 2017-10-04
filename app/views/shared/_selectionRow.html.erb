@@ -7,8 +7,10 @@
   			<% 	t = teams[pick.team_id] 
   				if winners.has_key?(t.id)
   					winner = 1
+  					winnercount += 1
   				elsif winners.has_value?(t.id)
   					winner = 0
+  					wrong = 1
   				else
   					winner = -1
   				end

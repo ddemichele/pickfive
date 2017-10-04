@@ -17,16 +17,17 @@ class GrouppicksController < ApplicationController
       winners = Hash.new
       pushcount = 50
       games.each do |g|
-        # put winners i key and loser in value
+        # put winners in key and loser in value
           if g.winning_team_id > 0
               if g.winning_team_id == g.home_team_id
                 loser = g.vis_team_id
-              else
+              elsif 
                 loser = g.home_team_id
               end
               if g.winning_team_id == 100
                 winners[pushcount] = g.home_team_id
-                winners[pushcount+1] = g.vis_team_id
+                pushcount += 1
+                winners[pushcount] = g.vis_team_id
                 pushcount += 1
               end
               winners[g.winning_team_id] = loser

@@ -1,0 +1,48 @@
+
+  
+        <div class="body">
+        	<%= render partial: "shared/navBar", locals: {type: "game"}  %>
+            <% if flash[:color]== "invalid"%>
+                <div id="flash-err-wrapper" class="flash">
+                    <div id="flash-err"><%=flash[:notice]%></div>
+                </div>
+            <% elsif flash[:color] == "valid" %>
+                <div id="flash-message-wrapper" class="flash">
+                    <div id="flash-message"><%=flash[:notice]%></div>
+                </div>
+            <%end%>
+            <%= render partial: "shared/weekSelectionList", locals: {current_week: session[:currentWeek]} %><br>
+            <%= form_tag(:action => 'save', :id => 'enterSpreads', :name => 'enterSpreads') do %>
+            <div class="listHeader">
+                Week <%=session[:currentWeek]%> Picks
+            </div>
+            <div class="list listcontent">
+                <table>
+                        <tr id="pickHeader">
+                            <td class="colheader" width="45%">Favorite</td>
+                            <td class="colheader" width="10%">Spread</td>
+                            <td class="colheader" width="45%">Underdog</td>
+                        </tr>
+                        <% @games.each do |game| %>
+                        <% favorites = getFavorite(game) %>
+                        <tr class="listBgTR">
+                            <td class="favorite" valign="center">
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: true, type: favorites[1], t: @teams[favorites[0]]}%>
+                            </td>
+                            <td align="center" class="spread"><input type="text" size="10" value="<%=game.spread%>" name="game_<%=game.id%>"/></td>
+                            <td>
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: false, type: favorites[3], t: @teams[favorites[2]]}%>
+                            </td>
+                        </tr>
+                        <% end %>
+                </table>
+            </div>
+            <div class="list_subtext">
+              * Home teams are in CAPS
+            </div>
+            <div class="buttons formButton">
+              <input type="submit" value="Save"></input>
+            </div>
+            <% end %>
+        </div>
+ 
