@@ -24,13 +24,14 @@
                             <td class="colheader" width="45%">Underdog</td>
                         </tr>
                         <% @games.each do |game| %>
+                        <% favorites = getFavorite(game) %>
                         <tr class="listBgTR">
                             <td class="favorite" valign="center">
-                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: true, type: "home", t: @teams[game.home_team_id]}%>
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: true, type: favorites[1], t: @teams[favorites[0]]}%>
                             </td>
-                            <td align="center" class="spread"><input type="text" size="10" value="<%=game.spread%>" name="game_<%=game.id%>"/></td>
+                            <td align="center" class="spread"><%=getSpread(game.spread)%></td>
                             <td>
-                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: false, type: "vis", t: @teams[game.vis_team_id]}%>
+                            <%= render partial: "shared/teamPickSelect", locals: {bSelected: false, bHideCheckbox: true, bFavorite: false, type: favorites[3], t: @teams[favorites[2]]}%>
                             </td>
                         </tr>
                         <% end %>

@@ -1,11 +1,11 @@
 <div class="navBar cf">
     <ul>
         <% if type == "group" %>
-            <li><%= link_to "Spreads", controller: "displaySpreads", action:"index" %></li>
+            <li><%= link_to "Spreads", controller: "displayspreads", action:"index" %></li>
         <% elsif type=="stats" %>
-            <li><%= link_to "Spreads", controller: "displaySpreads", action:"index" %></li>
+            <li><%= link_to "Spreads", controller: "displayspreads", action:"index" %></li>
         <% elsif type=="spreads" %>
-            <li><%= link_to "Group Picks", controller: "groupPicks", action:"index", weekNumber: "1" %></li>
+            <li><%= link_to "Group Picks", controller: "grouppicks", action:"index", weekNumber: "1" %></li>
         <% elsif type=="game" %> 
             <% if @user_slips > 0 %> 
                 <li>
@@ -15,7 +15,7 @@
                     <% i=1
                     while i <= @user_slips %>
                     <li <% if slipnum == i %>class="slipitem_selected" <%end%> >
-                    <%= link_to "Slip "+i.to_s, controller: "gamePicks", action:"index", slipnum: i.to_s %>
+                    <%= link_to "Slip "+i.to_s, controller: "gamepicks", action:"index", slipnum: i.to_s %>
                     <% i += 1 %>
                     </li>
                     <% end %>
@@ -38,8 +38,8 @@
                 <li><%= link_to "Users", controller: "user", action:"index" %></li>
                 <li><%= link_to "Games", controller: "game", action:"index" %></li>
                 <li><%= link_to "Teams", controller: "team", action:"index" %></li>
-                <li><%= link_to "Spreads", controller: "enterSpreads", action:"index" %></li>
-                <li><%= link_to "Winners", controller: "enterWinners", action:"index" %></li>
+                <li><%= link_to "Spreads", controller: "enterspreads", action:"index" %></li>
+                <li><%= link_to "Winners", controller: "enterwinners", action:"index" %></li>
                 <li><%= link_to "Weeks", controller: "week", action:"index" %></li>
                 <li><%= link_to "App Config", controller: "appConfig", action:"index" %></li>
             </ul>

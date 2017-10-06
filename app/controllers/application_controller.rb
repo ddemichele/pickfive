@@ -87,4 +87,22 @@ class ApplicationController < ActionController::Base
       end
       return teamHash  
   end
+
+    # determine favoriteand return a two team array of favorite and then underdog team id
+  def getFavorite(game)
+    if game.spread < 0
+        return [game.home_team_id, "home", game.vis_team_id, "vis"]
+    else
+        return [game.vis_team_id, "vis", game.home_team_id, "home"]
+    end
+  end
+
+  # get the list of team names from 
+  def getTeamNameArray(picks, teams)
+      teamNames = Hash.new
+      picks.each do |pickid|
+        teamNames[pickid.to_i] = teams[pickid.to_i].name
+      end
+      return teamNames
+  end
 end
