@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
 
   # get a list of teams off the session or load into a hash
   def getTeams
-      teams = Team.all
+      teams = Team.order(:name).all
       teamHash = Hash.new
       # get all the teams and store in an array
       teams.each do |t|
