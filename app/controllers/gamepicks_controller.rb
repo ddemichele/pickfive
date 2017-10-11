@@ -32,7 +32,7 @@ class GamepicksController < ApplicationController
           # send an email with the picks
           teamHash = getTeams
           # teams array are the pick ids
-          SavePicksMailer.send_pick_confirmation(@current_user, getTeamNameArray(teams, teamHash), session[:currentWeek], session[:slipnum]).deliver_now
+          #SavePicksMailer.send_pick_confirmation(@current_user, getTeamNameArray(teams, teamHash), session[:currentWeek], session[:slipnum]).deliver_now
           redirect_to action: "index"
         end
       end
