@@ -40,20 +40,39 @@ class EnterwinnersController < ApplicationController
 
       # delete all the results for a given week and then loop through and enter in the results
       UserResult.where(week_id: session[:currentWeek]).delete_all
-      # loop through each of the picks and insert new records with their results
-      groupedpicks.each do |picks|
-          #loop through all five results and calculate wins and losses to create user result
-          userresult = UserResult.new
-          userresult.user_id = picks[0].user_id
-          userresult.week_id = picks[0].week_id
-          userresult.slipnum = picks[0].slipnum
-          wins = 0
-          winner = 0
-          losses = 0
-          picks.each do |p|
-              if 
-          end
-          #picks = UserResult.create(user_id: p.user_id, week_id: p.week_id, version: 0, slipnum: p.slipnum, wins: p.wins, losses: p.losses, winner: 0)
+      # run the bulk insert
+      UserResult.bulk_insert(:user_id, :week_id, :version, :slipnum, :wins, :losses, :winner) do |worker|
+        # loop through each of the picks and insert new records with their results
+        groupedpicks.each do |picks|
+            #loop through all five results and calculate wins and losses to create user result
+            # userresult = UserResult.new
+            # userresult.user_id = picks[0].user_id
+            # userresult.week_id = picks[0].week_id
+            # userresult.slipnum = picks[0].slipnum
+            # userresult.version = 0
+            wins = 0
+            winner = 0
+            losses = 0
+            picks.each do |p|
+                if winners.has_key?(p.team_id)
+                  wins += 1
+                elsif winners.has_value?(p.team_id)
+                  losses += 1
+                end
+            end
+            if wins == 5
+                winner = 1
+            elsif (wins + losses) == 5
+                winner = -1
+            end
+            worker.add user_id: picks[0].user_id, week_id: picks[0].week_id, version: 0, slipnum: picks[0].slipnum, wins: wins, losses: losses, winner: winner
+            # userresult.wins = wins
+            # userresult.losses = losses
+            # userresult.winner = winner
+            #logger.debug worker.inspect
+            #userresult.save
+            #picks = UserResult.create(user_id: p.user_id, week_id: p.week_id, version: 0, slipnum: p.slipnum, wins: wins, losses: losses, winner: winner)
+        end
       end
   end
 

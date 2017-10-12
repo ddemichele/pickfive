@@ -41,6 +41,8 @@ GEM
     arel (7.1.4)
     bindex (0.5.0)
     builder (3.2.3)
+    bulk_insert (1.6.0)
+      activerecord (>= 4.1.0)
     byebug (9.1.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -158,6 +160,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bulk_insert
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
