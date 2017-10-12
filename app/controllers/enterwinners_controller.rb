@@ -45,11 +45,6 @@ class EnterwinnersController < ApplicationController
         # loop through each of the picks and insert new records with their results
         groupedpicks.each do |picks|
             #loop through all five results and calculate wins and losses to create user result
-            # userresult = UserResult.new
-            # userresult.user_id = picks[0].user_id
-            # userresult.week_id = picks[0].week_id
-            # userresult.slipnum = picks[0].slipnum
-            # userresult.version = 0
             wins = 0
             winner = 0
             losses = 0
@@ -66,12 +61,6 @@ class EnterwinnersController < ApplicationController
                 winner = -1
             end
             worker.add user_id: picks[0].user_id, week_id: picks[0].week_id, version: 0, slipnum: picks[0].slipnum, wins: wins, losses: losses, winner: winner
-            # userresult.wins = wins
-            # userresult.losses = losses
-            # userresult.winner = winner
-            #logger.debug worker.inspect
-            #userresult.save
-            #picks = UserResult.create(user_id: p.user_id, week_id: p.week_id, version: 0, slipnum: p.slipnum, wins: wins, losses: losses, winner: winner)
         end
       end
   end
