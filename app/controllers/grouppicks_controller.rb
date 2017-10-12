@@ -4,7 +4,7 @@ class GrouppicksController < ApplicationController
 
   def index
       logger.debug "<---------- GROUP PICKS USER ----------------->"      
-      results = Gameresult.where(week_id: session[:currentWeek]).order("wins desc, lastname, firstname, slipnum")
+      results = Gameresult.where(week_id: session[:currentWeek]).order("winner desc, wins desc, lastname, firstname, slipnum")
       @winners = getGameWinners
       @teams = getTeams
       logger.debug @winners.inspect

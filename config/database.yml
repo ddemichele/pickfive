@@ -36,12 +36,16 @@ test:
   password: redsox
   socket: /tmp/mysql.sock
 
-#production:
-#  adapter: mysql2
-#  encoding: utf8
-#  reconnect: false
-#  database: pickfive
-#  pool: 5
-#  username: root
-#  password: redsox
-#  socket: /tmp/mysql.sock
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: pickfive
+  pool: 5
+  username: admin
+  password: WZXFSEJLFIKUDHUN
+  host: aws-us-east-1-portal.28.dblayer.com
+  port: 23187
+  sslCA: /Users/dandemichele/Documents/ruby/UserAuth/config/mysqlcert.pem
+  sslverify: true
+  socket: /tmp/mysql.sock

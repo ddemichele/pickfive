@@ -108,6 +108,7 @@ class ApplicationController < ActionController::Base
 
     # flatten all the user picks results into a hash
   def flattenResults(results)
+      logger.debug "entering flatten results"
       userid = -100
       grouped = Array.new
       picks = Array.new

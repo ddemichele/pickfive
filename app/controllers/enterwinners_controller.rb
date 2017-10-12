@@ -34,7 +34,6 @@ class EnterwinnersController < ApplicationController
   def updateUserResults
       results = Pick.where(week_id: session[:currentWeek]).order("user_id, slipnum")
       groupedpicks = flattenResults(results)
-      logger.debug groupedpicks.inspect
       # get the winners in a hash
       winners = getGameWinners
 
@@ -57,7 +56,7 @@ class EnterwinnersController < ApplicationController
             end
             if wins == 5
                 winner = 1
-            elsif (wins + losses) == 5
+            elsif losses > 0
                 winner = -1
             end
             worker.add user_id: picks[0].user_id, week_id: picks[0].week_id, version: 0, slipnum: picks[0].slipnum, wins: wins, losses: losses, winner: winner
