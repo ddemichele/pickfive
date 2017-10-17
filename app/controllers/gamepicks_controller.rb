@@ -5,6 +5,11 @@ class GamepicksController < ApplicationController
   def index
       logger.debug "<---------- GAME PICKS USER ----------------->"
       logger.debug "load index: " + params.inspect
+
+      # check to see if the week is closed. Redirect if it is closed
+      if checkWeekClosed
+          redirect_to(:controller => 'grouppicks', :action => 'index')
+      end
       # load the games for a given week
       @games = Game.where("week_id = ?", session[:currentWeek])
       # get the picks
@@ -32,9 +37,10 @@ class GamepicksController < ApplicationController
           # send an email with the picks
           teamHash = getTeams
           # teams array are the pick ids
-          #SavePicksMailer.send_pick_confirmation(@current_user, getTeamNameArray(teams, teamHash), session[:currentWeek], session[:slipnum]).deliver_now
+          SavePicksMailer.send_pick_confirmation(@current_user, getTeamNameArray(teams, teamHash), session[:currentWeek], session[:slipnum]).deliver_now
           redirect_to action: "index"
         end
       end
   end
+
 end

@@ -34,22 +34,26 @@ class ApplicationController < ActionController::Base
       params.each do |key,value|
           logger.debug "Param #{key}: #{value}"
       end
-          @current_user = User.find session[:user_id]
-          @current_week = AppConfig.find_by name: "currentweek"
-          @user_slips = @current_user.slips
-          if params[:weekNumber]
-            session[:currentWeek] = params[:weekNumber]
-          elsif session[:currentWeek]
-            logger.debug "week is on the session"
-          else
-            session[:currentWeek] = @current_week.value
-          end
-          #load the slipnumber
-          if params[:slipnum]
-            session[:slipnum] = params[:slipnum]
-          elsif session[:slipnum].nil?
-            session[:slipnum] = 1
-          end
+
+      @current_user = User.find session[:user_id]
+      @current_week = AppConfig.find_by name: "currentweek"
+      @user_slips = @current_user.slips
+      if params[:weekNumber]
+        session[:currentWeek] = params[:weekNumber]
+      elsif session[:currentWeek]
+        logger.debug "week is on the session"
+      else
+        session[:currentWeek] = @current_week.value
+      end
+
+      #load the slipnumber
+      if params[:slipnum]
+        session[:slipnum] = params[:slipnum]
+      elsif session[:slipnum].nil?
+        session[:slipnum] = 1
+      end
+
+
   end
 
   #This method for prevent user to access Signup & Login Page without logout
@@ -90,7 +94,7 @@ class ApplicationController < ActionController::Base
 
     # determine favoriteand return a two team array of favorite and then underdog team id
   def getFavorite(game)
-    if game.spread < 0
+    if game.spread <= 0
         return [game.home_team_id, "home", game.vis_team_id, "vis"]
     else
         return [game.vis_team_id, "vis", game.home_team_id, "home"]
@@ -104,6 +108,19 @@ class ApplicationController < ActionController::Base
         teamNames[pickid.to_i] = teams[pickid.to_i].name
       end
       return teamNames
+  end
+
+    # determine if the week is closed
+  def checkWeekClosed
+      w = Week.where(weeknum: session[:currentWeek]).first
+      logger.debug DateTime.now
+      if DateTime.now <= w.starttime
+          logger.debug "The week is open"
+          return false
+      else  
+          logger.debug "The week is locked"
+          return true
+      end
   end
 
     # flatten all the user picks results into a hash

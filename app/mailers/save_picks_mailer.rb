@@ -6,6 +6,6 @@ class SavePicksMailer < ActionMailer::Base
   		@teams = teams.values
   		@week = week
   		@slipnum = slipnum
-  		mail(to: @user.username, subject: "Your picks for Slip " + @slipnum + " and week " + @week + " have been saved.")
+  		mail(to: @user.username, subject: "Your picks for Week "+ @week.to_s + " and Slip " + @slipnum.to_s + " have been saved.")
   	end
 end
