@@ -10,8 +10,7 @@
     <%end%>
     <br>
 
-<h1>Users</h1>
-<%= link_to 'New User', new_user_path %><br/><br/>
+<h1>App Config</h1>
 <table>
   <thead>
     <tr>
@@ -20,10 +19,10 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @configs.each do |config| %>
       <tr>
-        <td><%=user.firstname%> <%=user.lastname%></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%=config.name%></td>
+        <td><%= link_to 'Edit', controller: "appconfig", action: "edit", id: config %></td>
        </tr>
     <% end %>
   </tbody>

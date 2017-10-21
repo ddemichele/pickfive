@@ -14,6 +14,7 @@ Pickfive::Application.routes.draw do
   match "enterspreads" => "enterspreads#index", via: [:get, :post]
   match "displayspreads" => "displayspreads#index", via: [:get, :post]
   match "users" => "users#index", via: [:get, :post]
+  match "appconfig" => "appconfig#index", via: [:get, :post]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
