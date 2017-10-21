@@ -1,5 +1,6 @@
 Pickfive::Application.routes.draw do
 
+  resources :users
   match ':controller(/:action(/:id))(.:format)', via: [:get, :post]
   root :to => 'sessions#login'
   match "signup" => "users#new", via: [:get, :post]
@@ -12,6 +13,7 @@ Pickfive::Application.routes.draw do
   match "grouppicks" => "grouppicks#index", via: [:get, :post]
   match "enterspreads" => "enterspreads#index", via: [:get, :post]
   match "displayspreads" => "displayspreads#index", via: [:get, :post]
+  match "users" => "users#index", via: [:get, :post]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,24 @@
+<div class="body">
+  <%= render partial: "shared/navBar", locals: {type: "admin"}  %>
+    <% if flash[:color]== "invalid"%>
+        <div id="flash-err-wrapper" class="flash">
+            <div id="flash-err"><%=flash[:notice]%></div>
+        </div>
+    <% elsif flash[:color] == "valid" %>
+        <div id="flash-message-wrapper" class="flash">
+            <div id="flash-message"><%=flash[:notice]%></div>
+        </div>
+    <%end%>
+    <br>
+<%= form_for(user) do |f| %>
+  Email Address : <%= f.email_field :username, size: 30%><br />
+  First name : <%= f.text_field :firstname, size: 30 %><br />
+  Last name : <%= f.text_field :lastname, size: 30 %><br />
+  Password : <%= f.text_field :password, size: 30 %><br />
+  Slips : <%= f.text_field :slips %><br /><br />
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

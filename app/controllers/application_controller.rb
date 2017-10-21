@@ -14,16 +14,6 @@ class ApplicationController < ActionController::Base
   		return false
   	else
       self.load_variables
-      # check to see if current user is on the session. If they aren't then load all the session variables
-      #if session[:currentuser]
-      #    @current_user = session[:currentuser]
-      #else
-          # set current_user by the current user object
-      #    @current_user = User.find session[:user_id]
-      #    @current_week = AppConfig.find_by name: "currentweek"
-      #    session[:slips] = @current_user
-      #    session[:curentweek] = @current_week.value
-      #end
       return true
   	end
   end
@@ -34,7 +24,7 @@ class ApplicationController < ActionController::Base
       params.each do |key,value|
           logger.debug "Param #{key}: #{value}"
       end
-
+      logger.debug session[:user_id].inspect
       @current_user = User.find session[:user_id]
       @current_week = AppConfig.find_by name: "currentweek"
       @user_slips = @current_user.slips
@@ -52,6 +42,9 @@ class ApplicationController < ActionController::Base
       elsif session[:slipnum].nil?
         session[:slipnum] = 1
       end
+
+      # check to see if the user has admin privledges
+      
 
 
   end

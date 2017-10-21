@@ -4,22 +4,19 @@ class User < ActiveRecord::Base
   has_many :picks
   has_many :user_results
 
+ # attr_accessor :password, :firstname, :lastname, :username, :slips
+
   @version
   @subdiv
   @enabled
   
-  before_save :encrypt_password, :setRequiredVars
+  #before_save :encrypt_password, :setRequiredVars
   after_save :clear_password
   
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-  validates :username, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
+  validates :username, :presence => true, :uniqueness => true
   #validates :email, :presence => true, :uniqueness => true, :format => EMAIL_REGEX
-  validates :password, :confirmation => true
-  #Only on Create so other actions like update password attribute can be nil
-  validates_length_of :password, :in => 6..20, :on => :create
-
-  #attr_accessor :username, :password, :firstname, :lastname, :slips
-  #attr_accessible :username, :password, :firstname, :lastname, :slips
+  #validates :password, :confirmation => true
 
 
   def self.authenticate(username_or_email="", login_password="")
@@ -51,16 +48,17 @@ class User < ActiveRecord::Base
 
 
   def encrypt_password
-    #self.version = 1
+    logger.debug " IN ENCRYPT PASSWORD"
     unless password.blank?
       self.password = Digest::SHA256.hexdigest(password)
     end
   end
 
   def setRequiredVars
+    logger.debug " IN SET REQUIRED VARS"
     self.version = 1
     self.subdiv = 1
-    self.enabled = 1
+    #self.enabled = true
   end
 
   def clear_password
