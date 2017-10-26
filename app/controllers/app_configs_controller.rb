@@ -1,4 +1,4 @@
-class AppconfigController < ApplicationController
+class AppConfigsController < ApplicationController
   before_action :set_config, only: [:show, :edit, :update, :destroy]
   before_action :load_variables
 
@@ -29,7 +29,7 @@ class AppconfigController < ApplicationController
 
   # PATCH/PUT /appconfig/1
   def update
-      if @user.update(config_params)
+      if @config.update(config_params)
         flash[:notice] = "Your changes have been saved successfully."
         flash[:color] = "valid"
         redirect_to action: "edit"
@@ -52,6 +52,6 @@ class AppconfigController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def config_params
-      params.require(:appconfig).permit(:name, :value)
+      params.require(:app_config).permit(:name, :value)
     end
 end

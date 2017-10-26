@@ -11,7 +11,7 @@
     <%end%>
     <br>
 <%= form_for(config) do |f| %>
-  Name : <%= f.email_field :name, size: 30%><br />
+  Name : <%= f.text_field :name, size: 30%><br />
   Value : <%= f.text_field :value, size: 30 %><br /><br />
 
   <div class="actions">

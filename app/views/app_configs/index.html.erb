@@ -14,15 +14,15 @@
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @configs.each do |config| %>
       <tr>
-        <td><%=config.name%></td>
-        <td><%= link_to 'Edit', controller: "appconfig", action: "edit", id: config %></td>
+        <td><%=config.name%> = <%=config.value%>&nbsp;&nbsp;</td>
+        <td><%= link_to 'Edit', edit_app_config_path(config) %></td>
        </tr>
     <% end %>
   </tbody>
