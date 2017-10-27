@@ -4,12 +4,9 @@ Pickfive::Application.routes.draw do
   resources :app_configs
   match ':controller(/:action(/:id))(.:format)', via: [:get, :post]
   root :to => 'sessions#login'
-  match "signup" => "users#new", via: [:get, :post]
+  match "editsettings" => "editsettings#index", via: [:get, :post]
   match "login" => "sessions#login", via: [:get, :post]
   match "logout" => "sessions#logout", via: [:get, :post]
-  match "home" => "sessions#home", via: [:get, :post]
-  match "profile" => "sessions#profile", via: [:get, :post]
-  match "setting" => "sessions#setting", via: [:get, :post]
   match "gamepicks" => "gamepicks#index", via: [:get, :post]
   match "grouppicks" => "grouppicks#index", via: [:get, :post]
   match "enterspreads" => "enterspreads#index", via: [:get, :post]

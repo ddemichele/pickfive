@@ -1,0 +1,31 @@
+
+<% if flash[:color]== "invalid"%>
+	<div id="flash-err-wrapper" class="flash">
+		<div id="flash-err"><%=flash[:notice]%></div>
+	</div>
+<% elsif flash[:color] == "valid" %>
+  <div id="flash-message-wrapper" class="flash">
+      <div id="flash-message"><%=flash[:notice]%></div>
+  </div>
+<%end%>
+<div id="content" class="settings_medium login">
+<%= form_tag(:action => 'save', :controller => 'editsettings', :id => 'editPassword', :name => 'editPasssword') do %>
+  <table border="0" cellpadding="0" cellspacing="0" class="property_value" summary="login form">
+      <tr>
+        <th class="top" align="right">New Password</th>
+        <td>
+            <%= password_field_tag :password, @current_user.password, class: "big_form", maxlength: "40" %>
+        </td>
+     </tr>
+     <tr>
+        <th class="top" align="right">Confirm Password</th>
+        <td>
+            <%= password_field_tag :confirm_password, "", class: "big_form", maxlength: "40" %>
+        </td>
+     </tr>
+  </table>
+</div>
+    <div class="buttons formButton">
+        <input type="submit" value="Save"></input>
+    </div>
+<% end %> 

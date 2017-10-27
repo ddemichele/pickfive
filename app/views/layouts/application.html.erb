@@ -16,7 +16,7 @@
                     <ul class="float-right">
                      <%if session[:user_id]%>
 					    <li>Welcome <%= @current_user.firstname + " " + @current_user.lastname %>!&nbsp;|&nbsp;</li>
-					    <li><%= link_to "Edit Settings", controller: "editSettings", action:"index" %>&nbsp;|&nbsp;</li>	
+					    <li><%= link_to "Edit Settings", controller: "editsettings", action:"index" %>&nbsp;|&nbsp;</li>	
 					    <li><%= link_to "Logout", controller: "logout", action:"index" %>&nbsp;</li>&nbsp;					    
 					<%else%>
 						<li><%= link_to "Login", controller: "login", action:"index" %></li>					    
